@@ -1,0 +1,326 @@
+<html>
+    <head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <div id="myTop" class="w3-container w3-top w3-theme w3-large">
+    <span id="myIntro" class="w3-hide">GoShopping_Jia</span></p>
+    </div>  
+<script>
+// Change style of top container on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
+    document.getElementById("myIntro").classList.add("w3-show-inline-block");
+  } else {
+    document.getElementById("myIntro").classList.remove("w3-show-inline-block");
+    document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
+  }
+}
+</script>
+    <header class="w3-container w3-theme" style="padding:64px 32px">
+    <h1 class="w3-xxxlarge">Search Products</h1>
+    </header>
+        <meta charset="utf-8" /> 
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <!-- CSS -->
+        <style>
+            /* comments within a style block are written like this */
+            /* asterisk below selects all elements, use it for styles that aren't inherited, like box-sizing */
+            /* box-sizing: border-box allows setting sizes for element content, padding, and border */
+            * { 
+                box-sizing: border-box;
+            }
+            /* body selects the body element */
+            /* styles set here are inherited into some subelements of the body, unless overridden */
+            body {
+              font: 20px Arial;
+            }
+            /* input elements inside a form do not inherit the body font */
+            /* sets styles for input buttons */
+            input {
+              border: 1px solid transparent;
+              background-color: #f1f1f1; /* slightly gray */
+              padding: 10px;
+              font-size: 20px;
+            }
+            /* overrides input styles above for the submit input button */
+            input[type=submit] {
+              background-color: DodgerBlue; 
+              color: #fff; /* white; */
+            }
+            /* sets styles for a select element dropdown option */
+            select {
+              font-size: 16px;
+              width: 200px;
+            }
+            /* sets styles for a table, table header cell (th), and a table data cell (td) */
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 15px;
+            }
+            /* sets width for the entire table */
+            table {
+                width: 400px;
+            }
+            /* sets text alignment for a table header cell */
+            th {
+                text-align: left;
+            }
+            /* sets text alignment for a table data cell */
+            td {
+                text-align: left;
+            }
+            /* overrides default background color for every other table row (tr) */
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+        </style>
+        
+        
+    </head>
+    <body>
+        <p>
+        Select your items.
+        </p>
+        
+        <!-- start form -->
+        <form>
+        <label for="categories">Choose categories:</label>
+        <select id="categories">
+            <!-- add an empty value -->
+            <option value="*">- Select -</option>
+        </select>
+             
+        <label for="products">Choose products:</label>
+        <select id="products">
+            <!-- add an empty value -->
+            <option value="*">- Select -</option>
+        </select> 
+        
+        <input type="submit" id="submit" value="view">
+        
+        </form>
+        
+        
+        <div id="ppiTable" > 
+        </div>
+        
+        <div id="add">
+        <select id="test">
+            <option value="*">- Quantity -</option>
+        </select>
+        </div>
+        
+        	<form id="form_b">
+        	<input type="submit" id="submit_b" value="Get Price">
+        	</form>
+            
+        	
+        	
+        
+        <div id="price">
+		</div>
+        	<br>
+            
+        <p id="sum"></p>   
+        <div id="prices">
+            	<button id="submit_c">Add to Cart</button>
+            <p id="cost_num">0</p>
+        </div>
+        
+        <div id="summary_cart">
+	<table>
+                <tbody>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+			<th>Total Price</th>
+                    </tr>
+                </tbody>
+	</table>
+        </div>
+        
+        
+        <script type="text/javascript">
+            //document ready function
+            $(document).ready(function(){
+                test.style.display = 'none';
+                submit_b.style.display = 'none';
+                submit_c.style.display = 'none';
+                sum.style.display = 'none';
+                cost_num.style.display = 'none';
+                summary_cart.style.display = 'none';
+                updateCatInput();  
+                    
+                $('#categories').on('change', function(){
+                    updateProInput();
+                });
+                
+                $("form").on('submit', function(event){
+                    event.preventDefault();
+                    getPpiRows();
+                    addcart();
+                    
+                });
+    
+                $("#form_b").on('submit', function(event){
+                    event.preventDefault();
+                    getPrice();
+                });
+                  
+                $("#submit_c").click(function(){
+                    getcarttable();
+                })
+                
+                  });
+            
+            
+
+            var updateCatInput = function(){
+                $.ajax({
+                    url: 'https://bioed.bu.edu/cgi-bin/students_20/jiliu/shopping.py',
+                    type: 'get',
+                    data: {'table':'categories'},
+                    success: function(response){
+                        var lines = response.trim().split("\n");
+                        lines.forEach(function(value){
+                            //.append means to add at the end of what's already there in this element
+                            $("#categories").append("<option value='"+value+"'>"+value+"</option>");
+                        });
+                    }
+                });
+            };
+            
+            var updateProInput = function(){
+                categories_name=$("#categories").val();
+                $.ajax({
+                    url: 'https://bioed.bu.edu/cgi-bin/students_20/jiliu/shopping.py',
+                    type: 'get',
+                    data: {'table':'products','categories_name':categories_name},
+                    success: function(response){
+                        $("#products").empty();
+                        $("#products").append("<option value='*'>- Select -</option>")
+                        var lines = response.trim().split("\n");
+                        lines.forEach(function(value){
+                            $("#products").append("<option value='"+value+"'>"+value+"</option>");
+                        });
+                    }
+                });
+                
+            };
+            
+            var getPpiRows = function(){
+                categories_name=$("#categories").val();
+                products_name=$("#products").val();
+                $.ajax({
+                    url: 'https://bioed.bu.edu/cgi-bin/students_20/jiliu/shopping.py',
+                    type: 'get',
+                    data: {'submit':'submit','products_name':products_name},
+                    success: function(response){
+                        $("#ppiTable").empty();
+                        $("#ppiTable").append("<h3>Products Detail</h3>");
+                        $("#ppiTable").append("<b>Selected Product: "+products_name+"</b>");
+                        $("#ppiTable").append("<table><tbody><tr><th>Products</th><th>Unit Price</th><th>Stock</th></tr></tbody></table>");
+                        
+                        var lines = response.trim().split("\n");
+                        lines.forEach(function(value){
+                            products_detail = value.split(",");
+                            $("#ppiTable tbody").append("<tr><td>"+products_detail[0]+"</td><td>"+products_detail[1]+"</td><td>"+products_detail[2]+"</td></tr>");
+                            
+                        });
+                    }
+                });
+            };
+            
+            
+            
+            		var addcart = function(){
+                myproduct_name=$("#products").val();
+                $.ajax({
+                    url: 'https://bioed.bu.edu/cgi-bin/students_20/jiliu/shopping.py',
+                    type: 'get',
+                    data: {'submit':'submit','products_name':myproduct_name},
+                    success: function(response){
+                        test.style.display = 'block';
+                        submit_b.style.display = 'block';
+                        $("#test").empty();
+                        $("#test").append("<option value='*'>- Select Quantity -</option>")
+                        var lines = response.trim().split("\n");
+                        lines.forEach(function(value){
+                        
+                        
+                            product1 = value.split(",");
+                            
+                            
+                            
+                            if (Number(product1[2])==0){
+                                alert("Sorry, this item is out of stock.");
+                                return false;
+                            } else {
+                                var i;
+                                for (i = 1; i <= Number(product1[2]); i++) {
+                                    $("#test").append("<option value="+i+">"+i+"</option>");
+                                
+                                }}
+                                
+                            $('#price').append("<p>This item cost: "+quantity*Number(product1[1])+"</p>");
+                            $('#sum').text(Number(product1[1])*quantity);
+                        });
+                    }
+                });
+            };
+            
+            
+            
+            var getPrice = function(){
+                $('#sum').empty()
+                product_name=$("#products").val();
+                quantity=$("#test").val();
+                $.ajax({
+                    url: 'https://bioed.bu.edu/cgi-bin/students_20/jiliu/shopping.py',
+                    type: 'get',
+                    success: function(response){
+                    submit_c.style.display = 'block';
+                        $('#price').empty();
+                        $('#price').append("<p>Add "+quantity+" "+product_name+
+                            " to my cart"+"" +"</p>");
+                            
+                    }
+                });
+            };                
+    
+    
+    
+            var getcarttable = function(){
+                product_name=$("#products").val();
+                total_price=$("#sum").text();
+                  
+                  $.ajax({
+                    url: 'https://bioed.bu.edu/cgi-bin/students_20/jiliu/shopping.py',
+                    type: 'get',
+                    success: function(response){
+                    cost_num.style.display = 'block';
+                    summary_cart.style.display = 'block';
+                        $('#cost_num').text(Number($('#cost_num').text())+Number(total_price));
+                
+                $("#summary_cart tbody").prepend("<tr><td>"+product_name+"</td><td>"+quantity+"</td><td>"+total_price+"</td></tr>");
+                  
+                
+                            
+                    }
+                });
+    
+    
+            };
+                            
+        </script>
+        
+        
+
+
+</body>
+</html>
