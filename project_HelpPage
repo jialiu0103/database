@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>freemobam.com</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+ 
+<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<!--[if IE 6]>
+<link href="default_ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+</head>
+<body>
+<div id="wrapper">
+	<div id="header" class="container">
+		<div id="logo">
+			<h1><a href="#">Help Page</a></h1>
+			
+		</div>
+	</div>
+	
+	<div id="menu">
+			<ul>
+				<li class="active"><a href="https://bioed.bu.edu/students_20/mkouzmin/project_style.html">Go back to Homepage</a></li>
+				
+				
+			</ul>
+		</div>
+		
+	<div id="banner" class="container">
+		<div id="column1">
+			<h2>GMMH Database</h2>
+			<p>The main purpose of this database is to build a Mouse Gut Microbiota - Mental Health Database. The project was developed at Boston University as
+part of BF768, Spring 2020, G. Benson instructor.</p>
+			<ul>
+				<li>Store data in Gut Microbiota - Mental Health research</li>
+				<li>Automatically visualize the data for users </li>
+				<li>Allow users to download data from database</li>
+			</ul>
+		</div>
+		<div id="column2"><img src="images/pics02.jpg" width="792" height="500" alt="" /></div>
+	</div>
+	<div id="page" class="container">
+		<div id="content">
+			<div>
+				<h2>How to visualize your data?</h2>
+				<p><img src="images/pic01.jpg" alt="" width="300" height="150" class="alignleft" /></p>
+				<h3>Provide the address of the data that you want to visualize</h3>
+				<p>The data should be <strong>CSV file, </strong>the format that we can visualize automatically :) </p>
+				<p>The input CSV file needs to meet the following requirements: each column of the dataset is a sample, and each row is a feature. Just like the example on the left.<br />
+				</p>
+				<p>Note in particular that you need to provide the address of the data set rather than the CSV file itself.</p>
+			    </p>
+			</div>
+		</div>
+		<div id="sidebar">
+			<div>
+				<h2>Contact us</h2>
+				<ul class="style1">
+					<li class="first">
+    					
+						<h3>Jia Liu</h3>
+						<p><a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">jiliu@bu.edu</a></p>
+					</li>
+					<li>
+						<h3>Mikhail Kouzminov</h3>
+						<p><a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">mkouzmin@bu.edu</a></p>
+					</li>
+					<li>
+						<h3>Zeyuan Cao</h3>
+						<p><a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">czeyuan@bu.edu</a></p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="footer-content" class="container">
+	<div id="fbox1">
+		<h2>Data Source</h2>
+		<p>Anesthesia, Critical Care and Pain Medicine</p>
+		<ul class="style3">
+			<li class="first">
+				<p><span class="date"><a href="https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">Supervisor</a></span><span class="heading-title">Zhongcong Xie, Yiying Zhang</span></p>
+				<p><a href="#">zxie@mgh.harvard.edu, yzhang37@mgh.harvard.edu</a></p>
+			</li>
+			<li>
+				<p><span class="date"><a href="https://www.google.com/maps/search/Department+of+Anesthesia,+Critical+Care+and+Pain+Medicine+Massachusetts+General+Hospital+Harvard+Medical+School+149+13th+Street,+Room+4310H+Charlestown,+MA,+02129-2060,+USA./@42.3495004,-71.1039592,14z/data=!3m1!4b1">Address</a></span><span class="heading-title">Department of Anesthesia, Critical Care and Pain Medicine</span></p>
+				<p><a href="#">Massachusetts General Hospital,Harvard Medical School, 149 13th Street, Room 4310H, Charlestown, MA, 02129-2060, USA.</a></p>
+			</li>
+		</ul>
+	</div>
+	<div id="fbox2">
+		<h2>About Data</h2>
+		<ul class="style4">
+			<li class="first">
+				<h3>Discription of Data</h3>
+				<p><a href="#">All data are related to gut microbiota and mental health, such as species distribution in gut, or changes in mental behaviors (as shown by results in a maze) and brain IL-6 levels under different experimental conditions (ie given probiotics or not post-surgery). This is unpublished data from mgh lab (the format of unpublished data is csv) .</a></p>
+			</li>
+		</ul>
+	</div>
+	<div id="fbox3">
+		<h2>Data Download</h2>
+		<ul class="style4">
+			<li class="first"><a href="https://bioed.bu.edu/students_20/jiliu/csv_format" 
+		 		download="test.png">download data</a></li>
+		</ul>
+	</div>
+</div>
+ </div>
+ 
+</body>
+</html>
